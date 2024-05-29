@@ -168,3 +168,58 @@ function lab3LoadFourthArticlePart3() {
 function lab3LoadFifthArticle() {
     fetchContent(pathLab3, "lab3-conclusion", "output");
 }
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------ LAB4 ---------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
+
+const pathLab4 = "reports/lab4.html"
+
+function lab4LoadFirstArticle() {
+    fetchContent(pathLab4, "p1", "output");
+}
+
+function lab4LoadSecondArticle() {
+    fetchContent(pathLab4, "p2-btn", "side-btn-wrapper");
+}
+
+function lab4LoadSecondArticlePart1() {
+    fetchContent(pathLab4, "p2-1", "output");
+}
+
+function lab4LoadSecondArticlePart2() {
+    fetchContent(pathLab4, "p2-2", "output");
+}
+
+function lab4BackAndLoadSidebar() {
+    fetchContent(pathInitContent, "lab4-sidebar", "side-btn-wrapper");
+}
+
+
+function lab4LoadThirdArticle() {
+    fetchContent(pathLab4, "lab4-conclusion", "output");
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------ LAB5 ---------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
+
+const pathLab5 = "reports/lab5.html"
+
+function lab5LoadFirstArticle() {
+    fetchContent(pathLab5, "p1", "output");
+}
+
+function lab5LoadSecondArticle() {
+    fetchContent(pathLab5, "p2", "output");
+}
+
+function lab5LoadThirdArticle() {
+    fetchContent(pathLab5, "p3", "output");
+}
+
+function lab5LoadFourthArticle() {
+    fetchContent(pathLab5, "lab5-conclusion", "output");
+}

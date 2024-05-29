@@ -1,0 +1,129 @@
+<div id="p1">
+    <p>
+        <b style="font-size: 1.2em">Тема:</b>
+        Адаптивна верстка, медіа-запити, метатег viewport, стратегія mobile first
+    </p>
+    <b style="font-size: 1.2em">Мета:</b>
+    <ul>
+        <li>
+            Адаптивна верстка. Медіа-запити. Медіа-типи. Медіа-функції.Метатег viewport. Інструменти розробника. Стратегія Mobile First
+        </li>
+    </ul>
+
+    <h3 style="font-size: 1.2em; margin: 0.5em 0">Місце розташування:</h3>
+    <ul>
+        <li>
+            Github репозиторій власного проекту:
+            <a href="https://github.com/DanDatoChip/Application-Web" target="_blank">click</a>
+        </li>
+        <li>
+            Github репозиторій сторінки зі звітами:
+            <a href="https://github.com/DanDatoChip/HTML-Web" target="_blank">click</a>
+        </li>
+    </ul>
+</div>
+
+<div id="p2-btn">
+    <button class="side-btn" onclick="lab4LoadSecondArticlePart1()">Десктопна версія</button>
+    <button class="side-btn" onclick="lab4LoadSecondArticlePart2()">Мобільна версія</button>
+    <button class="side-btn" onclick="lab4BackAndLoadSidebar()">Назад</button>
+</div>
+
+<div id="p2-1">
+    <h3>Розробка макету</h3>
+    <p>
+        Свій додаток писав повністью підлаштовуючи його під bootstrap. 
+        Bootstrap використовує гнучку систему сіток, яка складається з контейнерів, рядків і колонок для створення макетів сторінок. 
+        Сітка поділяється на 12 колонок, і кожен елемент всередині сітки займає певну кількість цих колонок.
+        Завдяки цьому, я можу створити макет сайту, який реагуватиме на зміну розмірів екрану та забезпечить гнучкість в
+        організації вмісту мого веб-сайту.
+    </p>
+    <h3>Скріншот головної сторінки</h3>
+    <img src="images/app.png" alt="" style="width: 100%">
+    <h3>Програмний HTML-код</h3>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 300px; ">
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="@item.Img" alt="picture" width="200" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:maroon;text-align:center;">@item.Name </h5>
+                        <span style="color:black;">Price: @item.Price$</span>
+                        <div style="margin-top:7px;">
+                            <a id="unit_details"  asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+            </textarea>
+</div>
+
+<div id="p2-2">
+    <h3>Розробка макету</h3>
+    <p>
+        Свій додаток писав повністью підлаштовуючи його під bootstrap. 
+        Bootstrap використовує гнучку систему сіток, яка складається з контейнерів, рядків і колонок для створення макетів сторінок. 
+        Сітка поділяється на 12 колонок, і кожен елемент всередині сітки займає певну кількість цих колонок.
+        Завдяки цьому, я можу створити макет сайту, який реагуватиме на зміну розмірів екрану та забезпечить гнучкість в
+        організації вмісту мого веб-сайту.
+    </p>
+    <h3>Скріншот головної сторінки та сторінки логіну</h3>
+    <img src="images/lab4-app1.png" alt="" style="width: 40%">
+    <img src="images/lab4-app2.png" alt="" style="width: 40%">
+    <h3>Програмний HTML-код</h3>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 300px; ">
+
+<div class="row" id="div_login">
+    <h4>Customer</h4>
+    <hr />
+    <div class="row">
+        <div>
+            <form asp-action="Login">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group" id="form_group1">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" id="data_input"/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="form-group" id="form_group2">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" id="data_input" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <a asp-action="Registration" class="btn" asp-controller="Units">Registration</a>
+    </div>
+
+
+</div>
+            </textarea>
+</div>
+
+
+<div id="lab4-conclusion">
+    <h2>Висновок з лабораторної роботи</h2>
+
+    <p>
+        Під час виконання лабораторної роботи отримано теоретичні відомості і навички щодо використання макетів, CSS-стилів та Bootstrap
+        під час розробки HTML-сторінок, із використанням Bootstrap модифіковано основний проект для відображення під різні розміри екранів.
+    </p>
+
+</div>
