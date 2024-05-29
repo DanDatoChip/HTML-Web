@@ -1,0 +1,687 @@
+<div id="p1">
+    <p>
+        <b style="font-size: 1.2em">Тема:</b>
+        Верстка HTML-документу. Блокова верстка. Верстка засобами CSS та Flexbox
+    </p>
+    <b style="font-size: 1.2em">Мета:</b>
+    <ul>
+        <li>
+            придбати практичні навички роботи верстки сторінок засобами CSS, верстки на основі плаваючих
+            елементів, з’ясувати переваги та недоліки типів макетів веб-сторінок
+        </li>
+        <li>
+            придбати практичні навички роботи верстки сторінок засобами CSS та Flexbox
+        </li>
+    </ul>
+
+    <h3 style="font-size: 1.2em; margin: 0.5em 0">Місце розташування:</h3>
+    <ul>
+        <li>
+            Github репозиторій власного проекту:
+            <a href="https://github.com/DanDatoChip/Application-Web" target="_blank">click</a>
+        </li>
+        <li>
+            Github репозиторій сторінки зі звітами:
+            <a href="https://github.com/DanDatoChip/HTML-Web" target="_blank">click</a>
+        </li>
+    </ul>
+</div>
+
+<div id="p2">
+    <h3>Розробка макету</h3>
+    <p>
+        У своєму додатку я вирішив використати Flexbox макет. Це є потужним модулем CSS, який забезпечує простий
+        та ефективний спосіб розташування елементів в контейнері, незалежно від їх розміру та кількості. Завдяки
+        цьому, я можу створити макет сайту, який реагуватиме на зміну розмірів екрану та забезпечить гнучкість в
+        організації вмісту мого веб-сайту.
+    </p>
+    <h3>Скріншот головної сторінки</h3>
+    <img src="images/app.png" alt="" style="width: 100%">
+    <h3>Програмний HTML-код</h3>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 500px; ">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TazaShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TazaShop.styles.css" asp-append-version="true" />
+</head>
+<body>
+    
+    <header class="clearfix">
+        <div id="menu_top">
+            <div id="logo_div">
+                <a class="nav-link" asp-area="" asp-controller="Units" asp-action="Index">Home</a>
+            </div>
+        </div>
+        <div id="menu_basket" >
+            <a class="nav-link" asp-area="" asp-controller="Units" asp-action="Login">Login</a>
+            <a class="nav-link" asp-area="" asp-controller="Units" asp-action="AddToCart">Cart</a>
+        </div>
+        
+        <div id="menu_categories">
+            <div class="tab">
+                <button class="tablinks" onclick="toggleCity(event, 'Women')" id="defaultOpen">Women</button>
+                <button class="tablinks" onclick="toggleCity(event, 'Men')">Men</button>
+                <button class="tablinks" onclick="toggleCity(event, 'Accessories')">Accessories</button>
+            </div>
+
+            <div id="Women" class="tabcontent">
+                <span onclick="toggleCity(event, 'Women')" class="topright">&times</span>
+                <div class="container" id="tab_content">
+                    <h3>Women</h3>
+                    <hr style="color:white">
+                    <table id="tab_table">
+                        <tr>
+                            <th>Clothes <hr> </th>
+                            <th>Shoes <hr> </th>
+                            <th>Accessories <hr> </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Hoodie" asp-controller="Units" asp-action="Display">Hoodie</a>
+                            </td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Sneakers" asp-controller="Units" asp-action="Display">Sneakers</a>
+                            </td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Bag" asp-controller="Units" asp-action="Display">Bag</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Trousers" asp-controller="Units" asp-action="Display">Trousers</a>
+                            </td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Boots" asp-controller="Units" asp-action="Display">Boots</a>
+                            </td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Socks" asp-controller="Units" asp-action="Display">Socks</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Jacket" asp-controller="Units" asp-action="Display">Jacket</a>
+                            </td>
+                            <td>
+                                <a class="nav-link" asp-route-id="High-Heeled" asp-controller="Units" asp-action="Display">High-Heeled</a>
+                            </td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Glasses" asp-controller="Units" asp-action="Display">Glasses</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="T-Shirt" asp-controller="Units" asp-action="Display">T-Shirt</a>
+                            </td>
+                            <td></td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Belt" asp-controller="Units" asp-action="Display">Belt</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Dress" asp-controller="Units" asp-action="Display">Dress</a>
+                            </td>
+                            <td></td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Scarf" asp-controller="Units" asp-action="Display">Scarf</a>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Skirt" asp-controller="Units" asp-action="Display">Skirt</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </div>
+
+            <div id="Men" class="tabcontent">
+                <span onclick="toggleCity(event, 'Men')" class="topright">&times</span>
+                <div class="container" id="tab_content">
+                    <h3>Men</h3>
+                    <table id="tab_table">
+                        <tr>
+                            <th>Clothes</th>
+                            <th>Shoes</th>
+                            <th>Accessories</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Hoodie" asp-controller="Units" asp-action="Display">Hoodie</a>
+                            </td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Sneakers" asp-controller="Units" asp-action="Display">Sneakers</a>
+                            </td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Bag" asp-controller="Units" asp-action="Display">Bag</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Trousers" asp-controller="Units" asp-action="Display">Trousers</a>
+                            </td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Boots" asp-controller="Units" asp-action="Display">Boots</a>
+                            </td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Socks" asp-controller="Units" asp-action="Display">Socks</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Jacket" asp-controller="Units" asp-action="Display">Jacket</a>
+                            </td>
+                            <td></td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Glasses" asp-controller="Units" asp-action="Display">Glasses</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="T-Shirt" asp-controller="Units" asp-action="Display">T-Shirt</a>
+                            </td>
+                            <td></td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Belt" asp-controller="Units" asp-action="Display">Belt</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a class="nav-link" asp-route-id="Scarf" asp-controller="Units" asp-action="Display">Scarf</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id="Accessories" class="tabcontent">
+                <span onclick="toggleCity(event, 'Accessories')" class="topright">&times</span>
+                <div class="container" id="tab_content">
+                    <h3>Accessories</h3>
+                    <table id="tab_table">
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Bag" asp-controller="Units" asp-action="Display">Bag</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Socks" asp-controller="Units" asp-action="Display">Socks</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Glasses" asp-controller="Units" asp-action="Display">Glasses</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Belt" asp-controller="Units" asp-action="Display">Belt</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" asp-route-id="Scarf" asp-controller="Units" asp-action="Display">Scarf</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+
+
+        <script>
+            function toggleCity(evt, cityName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                var prev_state_display = document.getElementById(cityName).style.display;
+
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                if (prev_state_display === "none") {
+                    document.getElementById(cityName).style.display = "block";
+                    evt.currentTarget.className += " active";
+                } else {
+                    document.getElementById(cityName).style.display = "none";
+                    evt.currentTarget.className.replace(" active", "");
+                }
+            }
+
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+    </header>
+
+
+    
+    <div class="container" id="main_cont">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    
+    
+
+    <footer class="footerw text-muted">
+        <div class="container">
+            &copy; 2023 - TazaShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
+            </textarea>
+</div>
+
+<div id="p3-btn">
+    <button class="side-btn" onclick="lab3LoadThirdArticlePart1()">Фіксована таблична верстка</button>
+    <button class="side-btn" onclick="lab3LoadThirdArticlePart2()">Гумова таблична верстка</button>
+    <button class="side-btn" onclick="lab3LoadThirdArticlePart3()">Фіксована блокова верстка</button>
+    <button class="side-btn" onclick="lab3LoadFourthArticlePart4()">Гумова блокова верстка</button>
+    <button class="side-btn" onclick="lab3BackAndLoadSidebar()">Назад</button>
+</div>
+
+<div id="p3-1">
+    <h1>Фіксована таблична верстка</h1>
+    <table style="width: 100%; height: 100vh; text-align: center; font-weight: bold; table-layout: fixed; border-collapse: collapse; position: relative; font-family: Arial, sans-serif;">
+        <tr>
+            <td style="border: 1px solid black; background-color: #ffcc00; height: 100px; position: relative;" colspan="3">1</td>
+            <td style="background-color: #ffffff; height: 50px; width: 200px; position: absolute; top: 90px; left: 3%; z-index: 1; border: 1px solid black;"></td>
+        </tr>
+        <tr>
+            <td rowspan="2" style="border: 1px solid black; background-color: #0066cc; width: 150px;">2</td>
+            <td colspan="2" style="border: 1px solid black; background-color: #ff6666; height: 50px;"></td>
+        </tr>
+        <tr style="padding: 20px">
+            <td style="border: 1px solid black; background-color: #ffffff; height: 200px; width: 150px;">3</td>
+            <td style="border: 1px solid black; background-color: #0066cc; width: 150px; height: 200px;">4</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="border: 1px solid black; background-color: #ffcc00; height: 100px;">5</td>
+        </tr>
+    </table>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 300px; margin: 20px 0">
+    <table style="width: 100%; height: 100vh; text-align: center; font-weight: bold; table-layout: fixed; border-collapse: collapse; position: relative; font-family: Arial, sans-serif;">
+    <tr>
+    <td style="border: 1px solid black; background-color: #ffcc00; height: 100px; position: relative;" colspan="3">1</td>
+    <td style="background-color: #ffffff; height: 50px; width: 200px; position: absolute; top: 90px; left: 3%; z-index: 1; border: 1px solid black;"></td>
+    </tr>
+    <tr>
+    <td rowspan="2" style="border: 1px solid black; background-color: #0066cc; width: 150px;">2</td>
+    <td colspan="2" style="border: 1px solid black; background-color: #ff6666; height: 50px;"></td>
+    </tr>
+    <tr style="padding: 20px">
+    <td style="border: 1px solid black; background-color: #ffffff; height: 200px; width: 150px;">3</td>
+    <td style="border: 1px solid black; background-color: #0066cc; width: 150px; height: 200px;">4</td>
+    </tr>
+    <tr>
+    <td colspan="3" style="border: 1px solid black; background-color: #ffcc00; height: 100px;">5</td>
+    </tr>
+  </table>
+    </textarea>
+</div>
+
+<div id="p3-2">
+    <h1>Гумова таблична верстка</h1>
+    <table style="width: 100%; height: 100vh; text-align: center; font-weight: bold; table-layout: fixed; border-collapse: collapse; position: relative; font-family: Arial, sans-serif;">
+        <tr>
+            <td style="border: 1px solid black; background-color: #ffcc00; height: 10%; position: relative;" colspan="3">1</td>
+            <td style="background-color: #ffffff; height: 5%; width: 20%; position: absolute; top: 12%; left: 3%; z-index: 1; border: 1px solid black;"></td>
+        </tr>
+        <tr>
+            <td rowspan="2" style="border: 1px solid black; background-color: #0066cc; width: 15%;">2</td>
+            <td colspan="2" style="border: 1px solid black; background-color: #ff6666; height: 5%;"></td>
+        </tr>
+        <tr style="padding: 20px">
+            <td style="border: 1px solid black; background-color: #ffffff; height: 20%; width: 25%;">3</td>
+            <td style="border: 1px solid black; background-color: #0066cc; width: 25%; height: 20%;">4</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="border: 1px solid black; background-color: #ffcc00; height: 10%;">5</td>
+        </tr>
+    </table>
+    </table>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 300px; margin: 20px 0">
+    <table style="width: 100%; height: 100vh; text-align: center; font-weight: bold; table-layout: fixed; border-collapse: collapse; position: relative; font-family: Arial, sans-serif;">
+    <tr>
+    <td style="border: 1px solid black; background-color: #ffcc00; height: 10%; position: relative;" colspan="3">1</td>
+    <td style="background-color: #ffffff; height: 5%; width: 20%; position: absolute; top: 12%; left: 3%; z-index: 1; border: 1px solid black;"></td>
+    </tr>
+    <tr>
+    <td rowspan="2" style="border: 1px solid black; background-color: #0066cc; width: 15%;">2</td>
+    <td colspan="2" style="border: 1px solid black; background-color: #ff6666; height: 5%;"></td>
+    </tr>
+    <tr style="padding: 20px">
+    <td style="border: 1px solid black; background-color: #ffffff; height: 20%; width: 25%;">3</td>
+    <td style="border: 1px solid black; background-color: #0066cc; width: 25%; height: 20%;">4</td>
+    </tr>
+    <tr>
+    <td colspan="3" style="border: 1px solid black; background-color: #ffcc00; height: 10%;">5</td>
+    </tr>
+  </table>
+    </textarea>
+</div>
+
+<div id="p3-3">
+    <h1>Фіксована блокова верстка</h1>
+    <div style="width:1000px; height: 800px; text-align: center; font-weight: bold">
+        <div style="width: 1000px; height: 50px; background-color: yellow; padding: 50px; border: 1px solid black;">
+            <div style="width: 200px; height: 40px; background-color: white; border: 1px solid black;"></div> 1
+        </div>
+        <div style="width: 200px; height: 600px; background-color: blue; border: 1px solid black;"> 2 </div>
+        <div style="width: 630px; height: 100px; margin-top: -570px; margin-left: 250px; background-color: red; border: 1px solid black;"> </div>
+        <div style="width: 300px; height: 400px; background-color: white; border: 1px solid black; margin-left: 250px; margin-top: 20px"> 3 </div>
+        <div style="width: 300px; height: 400px; background-color: blue; border: 1px solid black; margin-left: 580px; margin-top: -400px; margin-bottom: 15px"> 4 </div>
+        <div style="width: 1000px; height: 50px; background-color: yellow; padding: 50px; border: 1px solid black;"> 5 </div>
+     </div>
+     <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb; color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 300px; margin: 20px 0">
+            <div style="width:1000px; height: 800px; text-align: center; font-weight: bold">
+            <div style="width: 1000px; height: 50px; background-color: yellow; padding: 50px; border: 1px solid black;">
+            <div style="width: 200px; height: 40px; background-color: white; border: 1px solid black;"></div>
+            1
+            </div>
+            <div style="width: 200px; height: 600px; background-color: blue; border: 1px solid black;"> 2 </div>
+            <div style="width: 630px; height: 100px; margin-top: -570px; margin-left: 250px; background-color: red; border: 1px solid black;"> </div>
+            <div style="width: 300px; height: 400px; background-color: white; border: 1px solid black; margin-left: 250px; margin-top: 20px"> 3 </div>
+            <div style="width: 300px; height: 400px; background-color: blue; border: 1px solid black; margin-left: 580px; margin-top: -400px; margin-bottom: 15px"> 4 </div>
+            <div style="width: 1000px; height: 50px; background-color: yellow; padding: 50px; border: 1px solid black;"> 5 </div>
+        </div>
+        </textarea>
+    </div>
+
+<div id="p3-4">
+    <h1>Гумова блокова верстка</h1>
+    <div style="width:80%; height: 70%; text-align: center; font-weight: bold">
+        <div style=" float: left; box-sizing: border-box; width: 100%; height: 3%; background-color: yellow; padding: 4%; border: 1px solid black;">
+            <div style="float: left; box-sizing: border-box; width: 20%; height: 20px; background-color: white; border: 1px solid black;"></div>
+            1
+        </div>
+        <div style="float: left; box-sizing: border-box; width: 20%; height: 75%; background-color: blue; border: 1px solid black;"> 2 </div>
+        <div style="float: left; box-sizing: border-box; width: 70%; height: 10%; background-color: red; border: 1px solid black; margin: 3%"> </div>
+        <div style="float: left; box-sizing: border-box; width: 30%; height: 40%; background-color: white; border: 1px solid black; margin: 5%;"> 3 </div>
+        <div style="float: left; box-sizing: border-box; width: 30%; height: 40%; background-color: blue; border: 1px solid black; margin: 5%;"> 4 </div>
+        <div style="float: left; box-sizing: border-box; width: 100%; height: 2%; background-color: yellow; padding: 5%; border: 1px solid black;"> 5 </div>
+    </div>
+
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 300px; margin: 20px 0">
+        <div style="width:80%; height: 70%; text-align: center; font-weight: bold">
+            <div style=" float: left; box-sizing: border-box; width: 100%; height: 3%; background-color: yellow; padding: 4%; border: 1px solid black;">
+                <div style="float: left; box-sizing: border-box; width: 20%; height: 20px; background-color: white; border: 1px solid black;"></div>
+                1
+            </div>
+            <div style="float: left; box-sizing: border-box; width: 20%; height: 75%; background-color: blue; border: 1px solid black;"> 2 </div>
+            <div style="float: left; box-sizing: border-box; width: 70%; height: 10%; background-color: red; border: 1px solid black; margin: 3%"> </div>
+            <div style="float: left; box-sizing: border-box; width: 30%; height: 40%; background-color: white; border: 1px solid black; margin: 5%;"> 3 </div>
+            <div style="float: left; box-sizing: border-box; width: 30%; height: 40%; background-color: blue; border: 1px solid black; margin: 5%;"> 4 </div>
+            <div style="float: left; box-sizing: border-box; width: 100%; height: 2%; background-color: yellow; padding: 5%; border: 1px solid black;"> 5 </div>
+        </div>
+    </textarea>
+</div>
+
+
+        <div id="p4-sidebar">
+            <button class="side-btn" onclick="lab3LoadFourthArticlePart1()">Зовнішній вигляд сторінки</button>
+            <button class="side-btn" onclick="lab3LoadFourthArticlePart2()">HTML-код</button>
+            <button class="side-btn" onclick="lab3LoadFourthArticlePart3()">CSS-код сторінки</button>
+            <button class="side-btn" onclick="lab3BackAndLoadSidebar()">Назад</button>
+        </div>
+
+        <div id="p4-1">
+            <h1>Зовнішній вигляд сторінки</h1>
+            <img src="images/lab3task3.png" alt="" style="width: 98%">
+        </div>
+
+        <div id="p4-2">
+            <h1>HTML-код сторінки</h1>
+            <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 400px; margin: 20px 0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java-розробник</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+            <h1> Спеціалізація: Java-розробник </h1>
+    </header>
+    <main>
+        <section class="features">
+                <p class="feature"> Портфоліо для старту кар'єри</p>
+                <p class="feature"> Навчання на реальних кейсах</p>
+                <p class="feature"> Заробіток після 4 місяців навчання</p>
+                <p class="feature"> Можно працювати віддалено</p>
+        </section>
+        <h2> Як проходить навчання</h2>
+        <section class="stages">
+            <div class="stage"> 
+                <div class="circle">
+                    <span class="number">1</span>
+                  </div>
+                <p class="stage_header">Дивіться відеолекції<br> </p>
+                <p class="text_left">Якісне відео з зрозумілим <br>поясненням теорії</p>
+                <img src="img/videolecture.png" alt="Videolectures">
+            </div>
+            <div class="stage"> 
+                <div class="circle">
+                    <span class="number">2</span>
+                  </div>
+                <p class="stage_header">Виконуйте тестові завдання<br> </p>
+                    <p class="text_left">Здобувайте практичні навички вирішуючі тестові завдання</p>
+                    <img src="img/task.png" alt="Tasks"> 
+            </div>
+            <div class="stage"> 
+                <div class="circle">
+                    <span class="number">3</span>
+                  </div>
+                <p class="stage_header">Отримуйте розгорнутий фідбек<br> </p>
+                    <p class="text_left">Викладачі надають розгорнутий фідбек щодо ваших проектів та результатів</p>
+                    <img src="img/feedback.png" alt="Feedback"> 
+            </div>
+            <div class="stage"> 
+                <div class="circle">
+                    <span class="number">4</span>
+                  </div>
+                <p class="stage_header">Працюйте над помилками<br> </p>
+                    <p class="text_left">Проходьте перевірку будь-скільки разів, щоб вдосконалити свої знання та навички</p>
+                    <img src="img/impove.jpg" alt="Improve"> 
+            </div>
+        </section>
+        <h2> Рівні навчання</h2>
+        <section class="levels">
+            <div class="level">
+                <img src="img/workspace.jpg" alt="Theory">
+                <p class="level_header"> Перший рівень: чітка і зрозуміла теорія</p>
+                <p class="level_text"> Цей рівень навчання зосереджений на наданні ґрунтовних теоретичних знань у певній галузі або темі. Він розроблений для того, щоб закласти міцний фундамент 
+                    для подальшого навчання та практичного застосування навичок.На цьому рівні можна очікувати: Вивчення основних концепцій та принципів: Ви будете знайомитися з фундаментальними
+                    знаннями, необхідними для розуміння теми.Отримання теоретичної бази: Ви будете вивчати теорії, моделі та алгоритми, що лежать в основі даної сфери.Розвиток аналітичних 
+                    та критичних мислення: Ви будете вчитися аналізувати інформацію, вирішувати проблеми та формулювати обґрунтовані висновки. Набуття навичок самостійного навчання: Ви будете вчитися
+                    знаходити та використовувати інформацію з різних джерел, а також ефективно організовувати свій час та ресурси.</p>
+            </div>
+            <div class="level">
+                <img src="img/Practice.jpg" alt="Theory">
+                <p class="level_header"> Другий рівень: інтенсивна практика</p>
+                <p class="level_text"> Цей рівень навчання зосереджений на наданні студентам можливості закріпити свої теоретичні знання та навички за допомогою практичних завдань та проектів.
+                    Він розроблений для того, щоб допомогти студентам застосувати те, що вони вивчили, в реальних умовах та розвинути свої практичні навички.На цьому рівні можна очікувати: 
+                    Виконання складних практичних завдань: Студенти будуть працювати над завданнями, які імітують реальні робочі ситуації та потребують застосування теоретичних знань на практиці.
+                    Участь у групових проектах: Студенти будуть співпрацювати в командах, щоби розробити та реалізувати проекти, пов'язані з їхньою областю навчання.
+                    Індивідуальне консультування: Студенти матимуть можливість отримати персональну допомогу від викладачів та наставників.
+                    Практичні демонстрації: Студенти будуть презентувати свої результати роботи перед одногрупниками та викладачами.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p class="footer_text"> 2024</p>
+    </footer>
+</body>
+
+    </textarea>
+        </div>
+
+        <div id="p4-3">
+            <h1>CSS-код сторінки</h1>
+            <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 400px; margin: 20px 0">
+        body{
+            text-align: center;
+        }
+
+        body p {
+            font-family: "Merriweather", serif;
+        }
+
+        header{
+            background-color: antiquewhite;
+        }
+
+        .features{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .feature{
+            margin: 30px;
+            background-color: antiquewhite;
+            padding: 20px;
+            border: 1px solid black;
+        }
+
+        .h2{
+            text-align: left;
+        }
+
+        .stages{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .stage{
+            border: 1px solid black;
+            margin: 30px;
+            padding: 5px 20px 5px;
+            height: 20%;
+            width: 10%;
+        }
+
+
+        .circle{
+            width: 50px;
+            height: 50px; 
+            border-radius: 50%; 
+            background-color: antiquewhite; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+        }
+
+        .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            }
+
+        .stage_header{
+            text-align: left;
+            font-weight: bold;
+            height: 30px;
+        }
+
+        .text_left{
+            text-align: left;
+            height: 100px;
+        }
+
+        .stage img {
+            max-width: 100%; 
+            height: auto; 
+            border-top: 1px solid black;
+        }
+
+        .levels{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .level{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 100px;
+            padding: 30px;
+        }
+
+        .level img{
+            max-width: 50%;
+            height: auto;
+            border: 1px solid black;
+        }
+
+        .level-header{
+            margin-left: 10px;
+            margin-top: -450px;
+            font-weight: bold;
+        }
+
+        .level_text{
+            max-width: 400px;
+            margin-top: 45px;
+            margin-left: -300px; 
+            text-align: left;
+        }
+
+        footer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            width: 100%;
+            height: 50px;
+        }
+
+        .footer_text{
+            color: white;
+            font-weight: bold;
+            font-size: 24;
+        }
+    </textarea>
+</div>
+
+<div id="lab3-conclusion">
+    <h2>Висновок з лабораторної роботи</h2>
+
+    <p>
+        Під час виконання лабораторної роботи отримано теоретичні відомості і навички щодо використання макетів, CSS-стилів та Flexbox
+        під час розробки HTML-сторінок, із використанням Flexbox модифіковано основний проект, розроблені фіксовані та гумові макети табличної 
+        і блокої верстки, із використанням Flexbox розробленно HTML сторінку із заданою темою та структурою. 
+    </p>
+</div>
