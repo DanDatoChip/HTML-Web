@@ -40,256 +40,112 @@
     <h3>Програмний HTML-код</h3>
     <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
                 color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 500px; ">
+
+<!DOCTYPE html>
+<html lang="uk">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TazaShop</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/TazaShop.styles.css" asp-append-version="true" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин взуття</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <header class="clearfix">
-        <div id="menu_top">
-            <div id="logo_div">
-                <a class="nav-link" asp-area="" asp-controller="Units" asp-action="Index">Home</a>
-            </div>
-        </div>
-        <div id="menu_basket" >
-            <a class="nav-link" asp-area="" asp-controller="Units" asp-action="Login">Login</a>
-            <a class="nav-link" asp-area="" asp-controller="Units" asp-action="AddToCart">Cart</a>
-        </div>
-        
-        <div id="menu_categories">
-            <div class="tab">
-                <button class="tablinks" onclick="toggleCity(event, 'Women')" id="defaultOpen">Women</button>
-                <button class="tablinks" onclick="toggleCity(event, 'Men')">Men</button>
-                <button class="tablinks" onclick="toggleCity(event, 'Accessories')">Accessories</button>
-            </div>
-
-            <div id="Women" class="tabcontent">
-                <span onclick="toggleCity(event, 'Women')" class="topright">&times</span>
-                <div class="container" id="tab_content">
-                    <h3>Women</h3>
-                    <hr style="color:white">
-                    <table id="tab_table">
-                        <tr>
-                            <th>Clothes <hr> </th>
-                            <th>Shoes <hr> </th>
-                            <th>Accessories <hr> </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Hoodie" asp-controller="Units" asp-action="Display">Hoodie</a>
-                            </td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Sneakers" asp-controller="Units" asp-action="Display">Sneakers</a>
-                            </td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Bag" asp-controller="Units" asp-action="Display">Bag</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Trousers" asp-controller="Units" asp-action="Display">Trousers</a>
-                            </td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Boots" asp-controller="Units" asp-action="Display">Boots</a>
-                            </td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Socks" asp-controller="Units" asp-action="Display">Socks</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Jacket" asp-controller="Units" asp-action="Display">Jacket</a>
-                            </td>
-                            <td>
-                                <a class="nav-link" asp-route-id="High-Heeled" asp-controller="Units" asp-action="Display">High-Heeled</a>
-                            </td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Glasses" asp-controller="Units" asp-action="Display">Glasses</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="T-Shirt" asp-controller="Units" asp-action="Display">T-Shirt</a>
-                            </td>
-                            <td></td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Belt" asp-controller="Units" asp-action="Display">Belt</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Dress" asp-controller="Units" asp-action="Display">Dress</a>
-                            </td>
-                            <td></td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Scarf" asp-controller="Units" asp-action="Display">Scarf</a>
-                            </td>
-                        </tr>
-                         <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Skirt" asp-controller="Units" asp-action="Display">Skirt</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                
-            </div>
-
-            <div id="Men" class="tabcontent">
-                <span onclick="toggleCity(event, 'Men')" class="topright">&times</span>
-                <div class="container" id="tab_content">
-                    <h3>Men</h3>
-                    <table id="tab_table">
-                        <tr>
-                            <th>Clothes</th>
-                            <th>Shoes</th>
-                            <th>Accessories</th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Hoodie" asp-controller="Units" asp-action="Display">Hoodie</a>
-                            </td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Sneakers" asp-controller="Units" asp-action="Display">Sneakers</a>
-                            </td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Bag" asp-controller="Units" asp-action="Display">Bag</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Trousers" asp-controller="Units" asp-action="Display">Trousers</a>
-                            </td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Boots" asp-controller="Units" asp-action="Display">Boots</a>
-                            </td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Socks" asp-controller="Units" asp-action="Display">Socks</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Jacket" asp-controller="Units" asp-action="Display">Jacket</a>
-                            </td>
-                            <td></td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Glasses" asp-controller="Units" asp-action="Display">Glasses</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="T-Shirt" asp-controller="Units" asp-action="Display">T-Shirt</a>
-                            </td>
-                            <td></td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Belt" asp-controller="Units" asp-action="Display">Belt</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a class="nav-link" asp-route-id="Scarf" asp-controller="Units" asp-action="Display">Scarf</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
-            <div id="Accessories" class="tabcontent">
-                <span onclick="toggleCity(event, 'Accessories')" class="topright">&times</span>
-                <div class="container" id="tab_content">
-                    <h3>Accessories</h3>
-                    <table id="tab_table">
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Bag" asp-controller="Units" asp-action="Display">Bag</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Socks" asp-controller="Units" asp-action="Display">Socks</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Glasses" asp-controller="Units" asp-action="Display">Glasses</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Belt" asp-controller="Units" asp-action="Display">Belt</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="nav-link" asp-route-id="Scarf" asp-controller="Units" asp-action="Display">Scarf</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-        
-
-
-        <script>
-            function toggleCity(evt, cityName) {
-                var i, tabcontent, tablinks;
-                tabcontent = document.getElementsByClassName("tabcontent");
-
-                tablinks = document.getElementsByClassName("tablinks");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", "");
-                }
-                var prev_state_display = document.getElementById(cityName).style.display;
-
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                }
-
-                if (prev_state_display === "none") {
-                    document.getElementById(cityName).style.display = "block";
-                    evt.currentTarget.className += " active";
-                } else {
-                    document.getElementById(cityName).style.display = "none";
-                    evt.currentTarget.className.replace(" active", "");
-                }
-            }
-
-            // Get the element with id="defaultOpen" and click on it
-            document.getElementById("defaultOpen").click();
-        </script>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Про нас</a></li>
+                <li><a href="#">Контакти</a></li>
+                <li><a href="#">Доставка та оплата</a></li>
+                <li><a href="#">Відгуки</a></li>
+                <li><a href="#">Новини та акції</a></li>
+                <li><a href="#">Увійти</a></li>
+            </ul>
+        </nav>
     </header>
 
+    <main>
 
-    
-    <div class="container" id="main_cont">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    
-    
-
-    <footer class="footerw text-muted">
-        <div class="container">
-            &copy; 2023 - TazaShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <section class="products">
+            <div class="product">
+                <img src="/img/1.webp" alt="Спортивне взуття">
+                <h2>FLAME</h2>
+                <div class="sizes">
+                    <button>38</button>
+                    <button>39</button>
+                    <button>40</button>
+                </div>
+                <p>1999 ₴</p>
+                <button class="add-to-cart">В кошик</button>
+            </div>
+            <div class="product">
+                <img src="/img/2.webp" alt="Класичне взуття">
+                <h2>SHINE</h2>
+                <div class="sizes">
+                    <button>38</button>
+                    <button>39</button>
+                    <button>40</button>
+                </div>
+                <p>2499 ₴</p>
+                <button class="add-to-cart">В кошик</button>
+            </div>
+            <div class="product">
+                <img src="/img/3.webp" alt="Кросівки">
+                <h2>ANDROMEDA</h2>
+                <div class="sizes">
+                    <button>38</button>
+                    <button>39</button>
+                    <button>40</button>
+                </div>
+                <p>1799 ₴</p>
+                <button class="add-to-cart">В кошик</button>
+            </div>
+            <div class="product">
+                <img src="/img/4.jpg" alt="Спортивне взуття">
+                <h2>CONVERSE CHUCK TAYLOR ALL STAR HI RED</h2>
+                <div class="sizes">
+                    <button>38</button>
+                    <button>39</button>
+                    <button>40</button>
+                </div>
+                <p>1999 ₴</p>
+                <button class="add-to-cart">В кошик</button>
+            </div>
+            <div class="product">
+                <img src="/img/5.jpg" alt="Класичне взуття">
+                <h2>CONVERSE CHUCK TAYLOR ALL STAR</h2>
+                <div class="sizes">
+                    <button>38</button>
+                    <button>39</button>
+                    <button>40</button>
+                </div>
+                <p>2499 ₴</p>
+                <button class="add-to-cart">В кошик</button>
+            </div>
+            <div class="product">
+                <img src="/img/6.jpg" alt="Кросівки">
+                <h2>CONVERSE CHUCK 70 PLUS CANVAS</h2>
+                <div class="sizes">
+                    <button>38</button>
+                    <button>39</button>
+                    <button>40</button>
+                </div>
+                <p>1799 ₴</p>
+                <button class="add-to-cart">В кошик</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Магазин взуття. Всі права захищені.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
-
 </html>
-            </textarea>
+
+    </textarea>
 </div>
 
 <div id="p3-btn">
@@ -450,7 +306,7 @@
 
         <div id="p4-1">
             <h1>Зовнішній вигляд сторінки</h1>
-            <img src="images/lab3task3.png" alt="" style="width: 98%">
+            <img src="images/lab3task3.png" alt="" style="width: 60%">
         </div>
 
         <div id="p4-2">
@@ -458,222 +314,206 @@
             <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
                 color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 400px; margin: 20px 0">
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Java-розробник</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="styles.css">
+    <title>Професія Java-розробник</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-            <h1> Спеціалізація: Java-розробник </h1>
+        <h1>Професія Java-розробник</h1>
+        <div class="header-features">
+            <div>Портфоліо для старту кар'єри</div>
+            <div>Навчання на реальних кейсах</div>
+            <div>Заробіток після 4 місяців навчання</div>
+            <div>Можна працювати віддалено</div>
+        </div>
     </header>
+
     <main>
-        <section class="features">
-                <p class="feature"> Портфоліо для старту кар'єри</p>
-                <p class="feature"> Навчання на реальних кейсах</p>
-                <p class="feature"> Заробіток після 4 місяців навчання</p>
-                <p class="feature"> Можно працювати віддалено</p>
-        </section>
-        <h2> Як проходить навчання</h2>
-        <section class="stages">
-            <div class="stage"> 
-                <div class="circle">
-                    <span class="number">1</span>
-                  </div>
-                <p class="stage_header">Дивіться відеолекції<br> </p>
-                <p class="text_left">Якісне відео з зрозумілим <br>поясненням теорії</p>
-                <img src="img/videolecture.png" alt="Videolectures">
-            </div>
-            <div class="stage"> 
-                <div class="circle">
-                    <span class="number">2</span>
-                  </div>
-                <p class="stage_header">Виконуйте тестові завдання<br> </p>
-                    <p class="text_left">Здобувайте практичні навички вирішуючі тестові завдання</p>
-                    <img src="img/task.png" alt="Tasks"> 
-            </div>
-            <div class="stage"> 
-                <div class="circle">
-                    <span class="number">3</span>
-                  </div>
-                <p class="stage_header">Отримуйте розгорнутий фідбек<br> </p>
-                    <p class="text_left">Викладачі надають розгорнутий фідбек щодо ваших проектів та результатів</p>
-                    <img src="img/feedback.png" alt="Feedback"> 
-            </div>
-            <div class="stage"> 
-                <div class="circle">
-                    <span class="number">4</span>
-                  </div>
-                <p class="stage_header">Працюйте над помилками<br> </p>
-                    <p class="text_left">Проходьте перевірку будь-скільки разів, щоб вдосконалити свої знання та навички</p>
-                    <img src="img/impove.jpg" alt="Improve"> 
+        <section class="how-it-works">
+            <h2>Як проходить навчання</h2>
+            <div class="steps">
+                <div class="step">
+                    <img src="/img/1.jpg" alt="Крок 1">
+                    <p>Дивіться відеолекції</p>
+                    <p>Здійсніть своє з зручною поясненою теорією.</p>
+                </div>
+                <div class="step">
+                    <img src="/img/2.webp" alt="Крок 2">
+                    <p>Робіть завдання і відправляйте на перевірку</p>
+                    <p>Повільніше не треба, робіть у зручний режим навчання.</p>
+                </div>
+                <div class="step">
+                    <img src="/img/3.avif" alt="Крок 3">
+                    <p>Чи отримуєте розбір вашої роботи</p>
+                    <p>Ваш куратор робить розбір вашої роботи і про те, як це зробити правильно.</p>
+                </div>
+                <div class="step">
+                    <img src="/img/4.jpg" alt="Крок 4">
+                    <p>Чи працюєте над помилками</p>
+                    <p>Повторює перевірку ще раз, щоб перевірити, що ви вже все правильно.</p>
+                </div>
             </div>
         </section>
-        <h2> Рівні навчання</h2>
+
         <section class="levels">
+            <h2>Рівні навчання</h2>
             <div class="level">
-                <img src="img/workspace.jpg" alt="Theory">
-                <p class="level_header"> Перший рівень: чітка і зрозуміла теорія</p>
-                <p class="level_text"> Цей рівень навчання зосереджений на наданні ґрунтовних теоретичних знань у певній галузі або темі. Він розроблений для того, щоб закласти міцний фундамент 
-                    для подальшого навчання та практичного застосування навичок.На цьому рівні можна очікувати: Вивчення основних концепцій та принципів: Ви будете знайомитися з фундаментальними
-                    знаннями, необхідними для розуміння теми.Отримання теоретичної бази: Ви будете вивчати теорії, моделі та алгоритми, що лежать в основі даної сфери.Розвиток аналітичних 
-                    та критичних мислення: Ви будете вчитися аналізувати інформацію, вирішувати проблеми та формулювати обґрунтовані висновки. Набуття навичок самостійного навчання: Ви будете вчитися
-                    знаходити та використовувати інформацію з різних джерел, а також ефективно організовувати свій час та ресурси.</p>
+                <img src="/img/5.png" alt="Перший рівень">
+                <div>
+                    <h3>Перший рівень: чітка і зрозуміла теорія</h3>
+                    <p>За 4 місяці вам необхідно буде пройти 16 тем. Ви самостійно вивчите базові навички, з якими зможете створювати реальні проекти. Ви отримаєте дипломний проект - джинсову блог в веб-інтерфейсі. Захист проекту проводиться у відомому режимі на нашому майданчику або по відеозв'язку.</p>
+                </div>
             </div>
             <div class="level">
-                <img src="img/Practice.jpg" alt="Theory">
-                <p class="level_header"> Другий рівень: інтенсивна практика</p>
-                <p class="level_text"> Цей рівень навчання зосереджений на наданні студентам можливості закріпити свої теоретичні знання та навички за допомогою практичних завдань та проектів.
-                    Він розроблений для того, щоб допомогти студентам застосувати те, що вони вивчили, в реальних умовах та розвинути свої практичні навички.На цьому рівні можна очікувати: 
-                    Виконання складних практичних завдань: Студенти будуть працювати над завданнями, які імітують реальні робочі ситуації та потребують застосування теоретичних знань на практиці.
-                    Участь у групових проектах: Студенти будуть співпрацювати в командах, щоби розробити та реалізувати проекти, пов'язані з їхньою областю навчання.
-                    Індивідуальне консультування: Студенти матимуть можливість отримати персональну допомогу від викладачів та наставників.
-                    Практичні демонстрації: Студенти будуть презентувати свої результати роботи перед одногрупниками та викладачами.</p>
+                <img src="/img/6.jpg" alt="Другий рівень">
+                <div>
+                    <h3>Другий рівень: інтенсивна практика</h3>
+                    <p>Під керівництвом наставника ви в складі команди створюєте аналоги відомих інтерфейсів, складаєте технічні програми, поглиблюєтеся до студентських. Вам видається 1-3 реальних проектів. Всі процеси, через які ви пройдете, є максимально наближеними до бойових умов досвіду. Саме так створюється колекція проектів, яка дозволить вам працювати в фірмах-розробниках.</p>
+                </div>
             </div>
         </section>
     </main>
+
     <footer>
-        <p class="footer_text"> 2024</p>
+        <div class="footer-content">
+            <p>&copy; 2024</p>
+        </div>
     </footer>
 </body>
+</html>
 
-    </textarea>
+
+            </textarea>
         </div>
 
         <div id="p4-3">
             <h1>CSS-код сторінки</h1>
             <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
                 color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 400px; margin: 20px 0">
-        body{
-            text-align: center;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
 
-        body p {
-            font-family: "Merriweather", serif;
-        }
+header {
+    background-color: #f4a261;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
 
-        header{
-            background-color: antiquewhite;
-        }
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
 
-        .features{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
+.header-features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
 
-        .feature{
-            margin: 30px;
-            background-color: antiquewhite;
-            padding: 20px;
-            border: 1px solid black;
-        }
+.header-features div {
+    background-color: #e76f51;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
 
-        .h2{
-            text-align: left;
-        }
+main {
+    padding: 20px;
+}
 
-        .stages{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
+section {
+    margin-bottom: 40px;
+}
 
-        .stage{
-            border: 1px solid black;
-            margin: 30px;
-            padding: 5px 20px 5px;
-            height: 20%;
-            width: 10%;
-        }
+.how-it-works {
+    text-align: center;
+}
 
+.steps {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 
-        .circle{
-            width: 50px;
-            height: 50px; 
-            border-radius: 50%; 
-            background-color: antiquewhite; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-        }
+.step {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        .number {
-            font-size: 24px;
-            font-weight: bold;
-            color: black;
-            }
+.step img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
 
-        .stage_header{
-            text-align: left;
-            font-weight: bold;
-            height: 30px;
-        }
+.levels {
+    text-align: center;
+}
 
-        .text_left{
-            text-align: left;
-            height: 100px;
-        }
+.level {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-        .stage img {
-            max-width: 100%; 
-            height: auto; 
-            border-top: 1px solid black;
-        }
+.level img {
+    max-width: 100%;
+    height: auto;
+    width: 50%;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
 
-        .levels{
-            display: flex;
-            flex-direction: column;
-        }
+.level div {
+    padding-left: 20px;
+    width: 50%;
+}
 
-        .level{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 100px;
-            padding: 30px;
-        }
+.level h3 {
+    color: #e76f51;
+}
 
-        .level img{
-            max-width: 50%;
-            height: auto;
-            border: 1px solid black;
-        }
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
 
-        .level-header{
-            margin-left: 10px;
-            margin-top: -450px;
-            font-weight: bold;
-        }
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .level_text{
-            max-width: 400px;
-            margin-top: 45px;
-            margin-left: -300px; 
-            text-align: left;
-        }
+.social-links a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
 
-        footer{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
-            width: 100%;
-            height: 50px;
-        }
-
-        .footer_text{
-            color: white;
-            font-weight: bold;
-            font-size: 24;
-        }
-    </textarea>
+.social-links a:hover {
+    text-decoration: underline;
+}
+        
+            </textarea>
 </div>
 
 <div id="lab3-conclusion">

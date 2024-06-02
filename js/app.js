@@ -192,6 +192,10 @@ function lab4LoadSecondArticlePart2() {
     fetchContent(pathLab4, "p2-2", "output");
 }
 
+function lab4LoadSecondArticlePart3() {
+    fetchContent(pathLab4, "p2-3", "output");
+}
+
 function lab4BackAndLoadSidebar() {
     fetchContent(pathInitContent, "lab4-sidebar", "side-btn-wrapper");
 }
