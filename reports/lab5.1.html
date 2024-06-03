@@ -1,0 +1,485 @@
+<div id="p1">
+    <p>
+        <b style="font-size: 1.2em">Тема:</b>
+        ОБ'ЄКТ. МЕТОДИ ОБ'ЄКТА. МАСИВ ОБ'ЄКТІВ. ДЕСТРУКТУРИЗАЦІЯ ОБ'ЄКТІВ. CALLBACK. СТРІЛОЧНІ ФУНКЦІЇ. СТРІЛОЧНІ ФУНКЦІЇ ЯК КОЛБЕКИ. 
+    </p>
+    <b style="font-size: 1.2em">Мета:</b>
+    <ul>
+        <li>
+            придбати практичні навички роботи з об'єктами. Методи об'єкта. Callback. Стрілочні функції. Стрілочні функції як колбеки.
+            Реалізація програм засовами мови JAVASCRIPT
+        </li>
+    </ul>
+
+    <h3 style="font-size: 1.2em; margin: 0.5em 0">Місце розташування:</h3>
+    <ul>
+        <li>
+            Github репозиторій сторінки зі звітами:
+            <a href="https://github.com/DanDatoChip/HTML-Web" target="_blank">click</a>
+        </li>
+    </ul>
+</div>
+
+<div id="p2">
+    <h2> Постановка задачі:</h2>
+    <p>Напишіть функцію getProductDetails, яка приймає ідентифікатор товару productId та дві колбек-функції successCallback та errorCallback.
+        <br>// Функція getProductDetails повинна отримати деталі про вказаний товар та передати їх у successCallback.  
+        <br>// У випадку якщо товар не знайдено, викликається errorCallback і передається повідомлення про помилку.
+    </p>
+    <h1> Завдання №2</h1>
+    <h2> Результати тестування:</h2>
+    <img src="images/lab5.1n2.PNG" alt="" style="width: 23%">
+    <h2> Розроблений JavaScript код: </h2>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 500px; ">
+<h2>Деталі товару</h2>
+<input type="number" id="product-id-input" placeholder="Введіть ID товару">
+<button id="get-details-button" onclick="GetDetailsButton()">Отримати деталі</button>
+<div id="product-details"></div>
+<script>
+    const products = [
+            { id: 1, name: "Телефон", price: 1000 },
+            { id: 2, name: "Ноутбук", price: 2500 },
+            { id: 3, name: "Планшет", price: 1500 },
+        ];
+
+        function getProductDetails(productId, successCallback, errorCallback) {
+            const product = products.find(product => product.id === productId);
+
+            if (product) {
+                successCallback(product);
+            } else {
+                errorCallback("Товар не знайдено");
+            }
+        }
+
+        const productIdInput = document.getElementById("product-id-input");
+        const getDetailsButton = document.getElementById("get-details-button");
+        const productDetailsDiv = document.getElementById("product-details");
+        getDetailsButton.addEventListener("click", () => {
+        const productId = parseInt(productIdInput.value);
+
+            getProductDetails(productId,
+                (product) => {
+                    productDetailsDiv.style.display = "block";
+                    productDetailsDiv.innerHTML = `
+                        <h2>${product.name}</h2>
+                        <p>Ціна: ${product.price}</p>
+                    `;
+                },
+                (errorMessage) => {
+                    productDetailsDiv.style.display = "block";
+                    productDetailsDiv.innerHTML = `<p style="color: red;">${errorMessage}</p>`;
+                }
+            );
+        });
+</script>
+    </textarea>
+</div>
+
+<div id="p3">
+    <h2> Постановка задачі:</h2>
+    <p>З об'єкту concerts отримати масив, який буде містити лише імена міст.
+        З масиву потрібно прибрати міста, в яких концерт  уже пройшов і   відсортувати їх у хронологічному порядку.
+        Результат вивести у консоль.
+        Очікуваний результат ["Одеса", "Умань", "Харків"]
+      Застосувати стрілочні функції
+      const concerts = {
+          Київ: new Date("2020-04-01"),
+          Умань: new Date("2025-07-02"),
+          Вінниця: new Date("2020-04-21"),
+          Одеса: new Date("2025-03-15"),
+          Хмельницький: new Date("2020-04-18"),
+          Харків: new Date("2025-07-10"),
+      };
+      
+    </p>
+    <h1> Завдання №4</h1>
+    <h2> Результати тестування:</h2>
+    <img src="images/lab5.1n4.PNG" alt="" style="width: 23%">
+    <h2> Розроблений JavaScript код: </h2>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 500px; ">
+
+<h2>Концерти</h2>
+<input type="date" id="concert-date-input" placeholder="Введіть дату">
+<button id="show-concerts-button" onclick="ShowConcertsButton()">Показати концерти</button>
+<div id="concert-list"></div>
+<script>
+    const concerts = {
+            Київ: new Date("2020-04-01"),
+            Умань: new Date("2025-07-02"),
+            Вінниця: new Date("2020-04-21"),
+            Одеса: new Date("2025-03-15"),
+            Хмельницький: new Date("2020-04-18"),
+            Харків: new Date("2025-07-10"),
+        };
+
+        const getUpcomingConcerts = (selectedDate) => {
+            const concertCities = Object.keys(concerts);
+            const upcomingCities = concertCities.filter(city => concerts[city] >= selectedDate);
+            upcomingCities.sort((city1, city2) => concerts[city1] - concerts[city2]);
+            const concertList = document.getElementById("concert-list");
+            concertList.style.display = "block";
+            concertList.innerHTML = `<h2>Концерти на ${selectedDate.toLocaleDateString()}</h2>`;
+            upcomingCities.forEach(city => {
+            concertList.innerHTML += `<p>${city}</p>`;
+            });    
+        };
+
+        const concertDateInput = document.getElementById("concert-date-input");
+        const showConcertsButton = document.getElementById("show-concerts-button");
+        showConcertsButton.addEventListener("click", () => {
+        const selectedDate = new Date(concertDateInput.value);
+        getUpcomingConcerts(selectedDate);
+
+});
+</script>             
+    </textarea>
+</div>
+
+<div id="p4">
+    <h2> Постановка задачі:</h2>
+    <p>Напишіть функцію, яка приймає массив об'єктів і повертає новий массив об'єктів,у якому є знижка на  30 % на всі медикаменти ціна, яких перевищує 300 грн у масиві Надайте ід для кожного медикамента    const medicines = [
+        { name: "Noshpa", price: 170 },
+        { name: "Analgin", price: 55 },
+        { name: "Quanil", price: 310 },
+        { name: "Alphacholine", price: 390 },
+      ];
+    
+    </p>
+    <h1> Завдання №6</h1>
+    <h2> Результати тестування:</h2>
+    <img src="images/lab5.1n6.PNG" alt="" style="width: 23%">
+    <h2> Розроблений JavaScript код: </h2>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 500px; ">
+
+<div id="original-medicines-list"></div> 
+<div id="discounted-medicines-list"></div>
+<script>
+    
+function applyDiscount(medicines) {
+  let idCounter = 1;
+  const discountedMedicines = medicines.map(medicine => {
+    const priceWithDiscount = medicine.price - (medicine.price * 30) / 100;
+    return {
+      id: idCounter++,
+      name: medicine.name,
+      price: medicine.price >= 300 ? priceWithDiscount : medicine.price,
+    };
+  });
+  return discountedMedicines;
+}
+
+
+const medicines = [
+  { name: "Noshpa", price: 170 },
+  { name: "Analgin", price: 55 },
+  { name: "Quanil", price: 310 },
+  { name: "Alphacholine", price: 390 },
+];
+
+const originalMedicinesList = document.getElementById("original-medicines-list");
+const discountedMedicinesList = document.getElementById("discounted-medicines-list");
+originalMedicinesList.innerHTML = `<h2>Початковий список медикаментів</h2>`;
+medicines.forEach(medicine => {
+  originalMedicinesList.innerHTML += `<p>${medicine.name}: ${medicine.price} грн</p>`;
+});
+
+const discountedMedicines = applyDiscount(medicines);
+
+discountedMedicinesList.innerHTML = `<h2>Список медикаментів зі знижкою</h2>`;
+discountedMedicines.forEach(medicine => {
+  discountedMedicinesList.innerHTML += `<p>ID: ${medicine.id} - ${medicine.name}: ${medicine.price} грн</p>`;
+});
+</script>
+    </textarea>
+    
+</div>
+
+<div id="p5">
+    <h2> Постановка задачі:</h2>
+    <p>Напиши функцію конструктор Storage який створює об'єкти  Для управління складом товарів.  При виклику отримуватиме один агрумент - початковий масив товарів,  і записувати їх у властивість items. 
+        Додай методи класу:   getItems() - повертайте масив товарів   addItems(item) - отримує новий товар та додає його до поточних   removeItem(item) - отримує товар і, якщо він є, видаляє його з поточних  
+      const arr = ["apple", "banana", "mango"]
+    </p>
+    <h1> Завдання №8</h1>
+    <h2> Результати тестування:</h2>
+    <img src="images/lab5.1n8.PNG" alt="" style="width: 23%">
+
+    <h2> Розроблений JavaScript код: </h2>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 500px; ">
+
+<h2>Склад товарів</h2>
+<input type="text" id="newItemInput" placeholder="Вкажіть назву">
+<button onclick="addItem()">Додати</button>
+<button onclick="removeItem()">Видалити</button>
+<ul id="items-container"></ul>
+<div id="error-message"></div>
+<script>
+    
+class Storage {
+  constructor(items) {
+    this.items = items;
+  }
+
+  getItems() {
+    return this.items;
+  }
+
+  addItems(item) {
+    this.items.push(item);
+    handleItemChange(); 
+  }
+
+  removeItem(item) {
+    const index = this.items.indexOf(item);
+    if (index !== -1) {
+      this.items.splice(index, 1);
+      handleItemChange(); 
+    }
+  }
+}
+
+const arr = ["apple", "banana", "mango"];
+const storage = new Storage(arr);
+const itemsContainer = document.getElementById('items-container');
+const newItemInput = document.getElementById('newItemInput');
+const errorMessage = document.getElementById('error-message');
+function updateItemsList() {
+  const items = storage.getItems();
+  itemsContainer.innerHTML = ''; 
+
+  items.forEach(item => {
+    const listItem = document.createElement('li');
+    listItem.textContent = item;
+    itemsContainer.appendChild(listItem);
+  });
+}
+
+function handleItemChange() {
+  updateItemsList();
+}
+
+function addItem() {
+  const newItem = newItemInput.value.trim();
+  if (!newItem) {
+    displayError('Введите название товара');
+    return;
+  }
+
+  if (storage.items.includes(newItem)) {
+    displayError('Этот товар уже существует');
+    return;
+  }
+  storage.addItems(newItem);
+  handleItemChange();
+  newItemInput.value = ''; 
+  displayError(''); 
+}
+
+function removeItem() {
+  const newItem = newItemInput.value.trim();
+  if (!newItem) {
+    displayError('Вкажіть назку товару!');
+    return;
+  }
+
+  if (!storage.items.includes(newItem)) {
+    displayError('Такого товару не було знайдено!');
+    return;
+  }
+
+  storage.removeItem(newItem);
+  handleItemChange();
+  newItemInput.value = '';
+  displayError(''); 
+}
+
+function displayError(message) {
+  errorMessage.textContent = message;
+  if (message) {
+    errorMessage.style.display = 'block';
+  } else {
+    errorMessage.style.display = 'none';
+  }
+}
+updateItemsList();
+
+</script>         
+    </textarea>
+</div>
+
+<div id="p6">
+    <h2> Постановка задачі:</h2>
+    <p>Поверніть об'єкт, в якому вказано кількість тегів.
+        Очікуваний результат {js: 3, nodejs: 3, html: 2, css: 2, react: 2}
+        
+         const tweets = [
+            { id: "000", likes: 5, tags: ["js", "nodejs"] },
+            { id: "001", likes: 2, tags: ["html", "css"] },
+            { id: "002", likes: 17, tags: ["html", "js", "nodejs"] },
+            { id: "003", likes: 8, tags: ["css", "react"] },
+            { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
+            ];                
+    </p>
+    <h1> Завдання №9</h1>
+    <h2> Результати тестування:</h2>
+    <img src="images/lab5.1n9.PNG" alt="" style="width: 23%">
+
+    <h2> Розроблений JavaScript код: </h2>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 500px; ">
+
+<h1>Твіти</h1>
+<div id="tweets-container"></div>
+<h2>Підрахунок тегів</h2>
+<div id="tag-counts"></div>
+<script>
+    const tweets = [
+  { id: "000", likes: 5, tags: ["js", "nodejs"] },
+  { id: "001", likes: 2, tags: ["html", "css"] },
+  { id: "002", likes: 17, tags: ["html", "js", "nodejs"] },
+  { id: "003", likes: 8, tags: ["css", "react"] },
+  { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
+];
+
+function countTags(tweets) {
+  const tagCounts = {};
+
+  for (const tweet of tweets) {
+    for (const tag of tweet.tags) {
+      if (tagCounts[tag]) {
+        tagCounts[tag] += 1;
+      } else {
+        tagCounts[tag] = 1;
+      }
+    }
+  }
+
+  return tagCounts;
+}
+
+function displayTweets(tweets) {
+  const tweetsContainer = document.getElementById('tweets-container');
+  tweetsContainer.innerHTML = ''; 
+  tweets.forEach(tweet => {
+    const tweetElement = document.createElement('div');
+    tweetElement.className = 'tweet';
+    const idElement = document.createElement('span');
+    idElement.textContent = `ID: ${tweet.id}`;
+    tweetElement.appendChild(idElement);
+    const likesElement = document.createElement('span');
+    likesElement.textContent = ` | Лайки: ${tweet.likes}`;
+    tweetElement.appendChild(likesElement);
+    const tagsElement = document.createElement('span');
+    tagsElement.textContent = ` | Теги: ${tweet.tags.join(', ')}`;
+    tweetElement.appendChild(tagsElement);
+    tweetsContainer.appendChild(tweetElement);
+  });
+}
+
+function displayTagCounts(tagCounts) {
+  const tagCountsContainer = document.getElementById('tag-counts');
+  tagCountsContainer.innerHTML = ''; 
+  const listElement = document.createElement('ul');
+  tagCountsContainer.appendChild(listElement);
+  for (const [tag, count] of Object.entries(tagCounts)) {
+    const listItemElement = document.createElement('li');
+    listItemElement.textContent = `${tag}: ${count}`;
+    listElement.appendChild(listItemElement);
+  }
+}
+
+displayTweets(tweets);
+const tagCounts = countTags(tweets);
+displayTagCounts(tagCounts);
+
+</script>
+    </textarea>
+</div>
+
+<div id="p7">
+    <h2> Постановка задачі:</h2>
+    <p>Напишіть функцію checkBrackets(str) яка приймає рядок жс коду (someFn)  і перевіряє правильність закриття дужок () {} []
+        Якщо рядок містить коректний код функція повертає true.
+        В іншому випадку повертає false            
+    </p>
+    <h1> Завдання №10</h1>
+    <h2> Результати тестування:</h2>
+    <img src="images/lab5.1n10.PNG" alt="" style="width: 23%">
+
+    <h2> Розроблений JavaScript код: </h2>
+    <textarea readonly style="font-family: monospace; background-color: #f4f7f8; border-left: 6px solid #558abb;
+                color: #4d4e53; width: 90%; padding: 10px 10px 0; height: 500px; ">
+
+
+<button onclick="checkAndDisplayResult()">Перевірити</button>
+<div id="result"></div>
+
+<script>
+function checkBrackets(str) {
+    const stack = [];
+    const bracketPairs = {
+        '(': ')',
+        '{': '}',
+        '[': ']'
+    };
+
+    for (let char of str) {
+        if (bracketPairs[char]) {
+            stack.push(char);
+        } else if (Object.values(bracketPairs).includes(char)) {
+            const lastBracket = stack.pop();
+            if (bracketPairs[lastBracket] !== char) {
+                return false;
+            }
+        }
+    }
+
+    return stack.length === 0;
+}
+
+function checkAndDisplayResult() {
+    const codeInput = document.getElementById('codeInput').value;
+    const resultDiv = document.getElementById('result');
+    
+    const isValid = checkBrackets(codeInput);
+    resultDiv.textContent = isValid ? 'Дужки вірні' : 'Дужки невірні';
+}
+</script>
+    </textarea>
+</div>
+
+<div id="lab5.1-conclusion">
+    <h2>Висновок з лабораторної роботи</h2>
+
+    <p>
+      Під час виконання лабораторної роботи отримано теоретичні знання та практичні навички роботи з об'єктами в JavaScript. Основну увагу було приділено таким аспектам:
+
+      <ul>
+          <li>Створення та маніпуляція об'єктами</li>
+          <li>Методи об'єкта</li>
+          <li>Масиви об'єктів</li>
+          <li>Деструктуризація об'єктів</li>
+          <li>Callback-функції</li>
+          <li>Стрілочні функції</li>
+          <li>Стрілочні функції як колбеки</li>
+      </ul>
+      У процесі роботи було реалізовано кілька програмних рішень, що демонструють використання об'єктів та пов'язаних з ними методів:
+      
+      <ul>
+          <li>Створення об'єктів та додавання до них властивостей і методів</li>
+          <li>Маніпуляція масивами об'єктів, включаючи додавання, видалення та оновлення об'єктів</li>
+          <li>Застосування деструктуризації об'єктів для спрощення доступу до властивостей</li>
+          <li>Реалізація callback-функцій для обробки асинхронних операцій</li>
+          <li>Використання стрілочних функцій для покращення читабельності та зменшення обсягу коду</li>
+          <li>Застосування стрілочних функцій як колбеків для більш лаконічного та ефективного коду</li>
+      </ul>
+      Ця робота дозволила набути важливих навичок у використанні об'єктів і сучасних функцій JavaScript, що є необхідними для розробки складних та ефективних веб-додатків. 
+      Освоєння таких концепцій, як деструктуризація об'єктів, стрілочні функції та callback-функції, є важливим етапом у розвитку професійних навичок програмування на JavaScript.
+    </p>
+
+</div>
