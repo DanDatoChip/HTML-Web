@@ -100,34 +100,34 @@ function processCategories() {
 
 // ------------------------------------------------------------------------- ЗАВДАННЯ №8 -----------------------------------------------------------------------------------------
 
-document.addEventListener("DOMContentLoaded", function () {
-  const loginForm = document.querySelector(".login-form");
+function FormSubmit() {
+  const form = document.querySelector(".login-form");
 
-  loginForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Щоб уникнути перезавантаження сторінки
+  if (form) {
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
 
-    const emailInput = loginForm.elements["email"];
-    const passwordInput = loginForm.elements["password"];
+      const email = form.elements["email"].value.trim();
+      const password = form.elements["password"].value.trim();
 
-    // Перевірка на заповненість полів
-    if (!emailInput.value.trim() || !passwordInput.value.trim()) {
-      alert("All form fields must be filled in");
-      return;
-    }
+      if (!email || !password) {
+        alert("All form fields must be filled in");
+        return;
+      }
 
-    // Створення об'єкта з даними форми
-    const formData = {
-      email: emailInput.value.trim(),
-      password: passwordInput.value.trim(),
-    };
+      const formData = {
+        email: email,
+        password: password
+      };
 
-    // Виведення об'єкта з даними у консоль
-    console.log(formData);
+      console.log(formData);
 
-    // Очищення значень полів форми
-    loginForm.reset();
-  });
-});
+      form.reset();
+    });
+  } else {
+    console.error("Форма не знайдена!");
+  }
+}
 
 
 // ------------------------------------------------------------------------- ЗАВДАННЯ №9 -----------------------------------------------------------------------------------------
